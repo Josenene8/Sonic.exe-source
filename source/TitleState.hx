@@ -157,7 +157,7 @@ class TitleState extends MusicBeatState
 
 		var bg:FlxSprite;
 		
-		bg = new FlxSprite(0, 0);
+		var bg:FlxSprite = new FlxSprite(0, 0);
 		bg.frames = Paths.getSparrowAtlas('menuSTATIC');
 		bg.animation.addByPrefix('idle', "staticBackground", 24);
 		bg.animation.play('idle');
@@ -167,7 +167,7 @@ class TitleState extends MusicBeatState
 		bg.updateHitbox();
 		add(bg);
 
-		logoBlBUMP = new FlxSprite(0, 0);
+		var logoBlBUMP:FlxSprite = new FlxSprite(0, 0);
 		logoBlBUMP.loadGraphic(Paths.image('KadeEngineLogo', 'preload'));
 		logoBlBUMP.antialiasing = true;
 
