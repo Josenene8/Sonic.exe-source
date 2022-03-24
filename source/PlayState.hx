@@ -3077,8 +3077,6 @@ class PlayState extends MusicBeatState
 			}
 
 			#if !switch
-			Highscore.saveScore(songHighscore, Math.round(songScore), storyDifficulty);
-			Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(accuracy), storyDifficulty);
 			#end
 		}
 
@@ -3149,8 +3147,7 @@ class PlayState extends MusicBeatState
 					
 					if (SONG.validScore)
 					{
-						NGio.unlockMedal(60961);
-						Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+						
 					}
 
 					FlxG.save.flush();
@@ -3165,8 +3162,7 @@ class PlayState extends MusicBeatState
 						case 'Philly-Nice': songFormat = 'Philly';
 					}
 
-					var poop:String = Highscore.formatSong(songFormat, storyDifficulty);
-
+					
 					trace('LOADING NEXT SONG');
 					trace(poop);
 
@@ -3818,10 +3814,9 @@ class PlayState extends MusicBeatState
 					webmHandler = new WebmHandler();
 					webmHandler.source(ourSource);
 					webmHandler.makePlayer();
-					webmHandler.webm.name = str1;
+					
 			
-					GlobalVideo.setWebm(webmHandler);
-
+					
 					GlobalVideo.get().source(source);
 					GlobalVideo.get().clearPause();
 					if (GlobalVideo.isWebm)
@@ -3839,11 +3834,11 @@ class PlayState extends MusicBeatState
 					
 					var data = webmHandler.webm.bitmapData;
 			
-					videoSprite = new FlxSprite(-470,-30).loadGraphic(data);
+					var videoSprite:FlxSprite = new FlxSprite(-470,-30).loadGraphic(data);
 			
 					videoSprite.setGraphicSize(Std.int(videoSprite.width * 1.2));
 			
-					remove(gf);
+					
 					remove(boyfriend);
 					remove(dad);
 					add(videoSprite);
@@ -3859,7 +3854,6 @@ class PlayState extends MusicBeatState
 						webmHandler.resume();
 					#end
 				}
-
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
 		if (!boyfriend.stunned)
