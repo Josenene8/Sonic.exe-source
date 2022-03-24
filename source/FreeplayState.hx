@@ -245,7 +245,7 @@ class FreeplayState extends MusicBeatState
 			
 			trace(songs[curSelected].songName);
 
-			var poop:String = Highscore.formatSong(songFormat, curDifficulty);
+			
 
 			trace(poop);
 			
@@ -279,8 +279,7 @@ class FreeplayState extends MusicBeatState
 		}
 		
 		#if !switch
-		intendedScore = Highscore.getScore(songHighscore, curDifficulty);
-		combo = Highscore.getCombo(songHighscore, curDifficulty);
+		
 		#end
 
 		diffText.text = CoolUtil.difficultyFromInt(curDifficulty).toUpperCase();
@@ -313,8 +312,7 @@ class FreeplayState extends MusicBeatState
 		}
 
 		#if !switch
-		intendedScore = Highscore.getScore(songHighscore, curDifficulty);
-		combo = Highscore.getCombo(songHighscore, curDifficulty);
+		
 		// lerpScore = 0;
 		#end
 
