@@ -4239,14 +4239,6 @@ class PlayState extends MusicBeatState
 
 	var stepOfLast = 0;
 
-	override function stepHit()
-	
-		super.stepHit();
-		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
-		{
-			resyncVocals();
-		}
-
 		if (dad.curCharacter == 'sonic' && SONG.song.toLowerCase() == 'too-slow')
 			{
 				switch (curStep)
