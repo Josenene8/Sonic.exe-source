@@ -56,7 +56,7 @@ class Highsco
 	{
 
 		#if !switch
-		NGio.postScore(score, "Week " + week);
+		
 		#end
 
 		if(!FlxG.save.data.botplay)
