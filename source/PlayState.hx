@@ -2992,16 +2992,6 @@ class PlayState extends MusicBeatState
 										vocals.volume = 0;
 										if (theFunne)
 											
-									}
-							}
-		
-							daNote.visible = false;
-							daNote.kill();
-							notes.remove(daNote, true);
-						}
-					
-				});
-			}
 
 		if (FlxG.save.data.cpuStrums)
 		{
