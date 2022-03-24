@@ -70,19 +70,19 @@ class MP4Handler
 		FlxG.stage.addEventListener(Event.ENTER_FRAME, update);
 
 		if (repeat)
-			vlcBitmap.repeat = -1;
+			
 		else
-			vlcBitmap.repeat = 0;
+			
 
 		
 
 		FlxG.addChildBelowMouse(vlcBitmap);
-		vlcBitmap.play(checkFile(path));
+		
 		#end
 	}
 
 	#if desktop
-	function checkFile(fileName:String):String
+
 	{
 		var pDir = "";
 		var appDir = "file:///" + Sys.getCwd() + "/";
@@ -104,8 +104,6 @@ class MP4Handler
 
 	public function onVLCComplete()
 	{
-		vlcBitmap.stop();
-
 		// Clean player, just in case! Actually no.
 
 		trace("Big, Big Chungus, Big Chungus!");
