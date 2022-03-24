@@ -63,7 +63,9 @@ import lime.utils.Assets;
 import openfl.display.BlendMode;
 import openfl.display.StageQuality;
 import openfl.filters.ShaderFilter;
-
+#if mobileC
+import mobile.Mobilecontrols;
+#end
 #if windows
 import Discord.DiscordClient;
 #end
@@ -250,7 +252,10 @@ class PlayState extends MusicBeatState
 	private var replayAna:Analysis = new Analysis(); // replay analysis
 
 	public static var highestCombo:Int = 0;
-
+        #if mobileC
+	var mcontrols:Mobilecontrols; 
+	#end
+	
 	private var executeModchart = false;
 
 	// API stuff
@@ -528,7 +533,7 @@ class PlayState extends MusicBeatState
 					floor.active = false;
 					add(floor);
 
-					eyeflower = new FlxSprite(-200,300);
+					var eyeflower:FlxSprite = new FlxSprite(-200,300);
 					eyeflower.frames = Paths.getSparrowAtlas('LordXStage/ANIMATEDeye', 'exe');
 					eyeflower.animation.addByPrefix('animatedeye', 'EyeAnimated', 24);
 					eyeflower.setGraphicSize(Std.int(eyeflower.width * 2));
@@ -537,7 +542,7 @@ class PlayState extends MusicBeatState
 					add(eyeflower);
 
 					
-					hands = new FlxSprite(-200, -600); 
+					var hands:FlxSprite = new FlxSprite(-200, -600); 
 					hands.frames = Paths.getSparrowAtlas('LordXStage/SonicXHandsAnimated', 'exe');
 					hands.animation.addByPrefix('handss', 'HandsAnimated', 24);
 					hands.setGraphicSize(Std.int(hands.width * .5));
@@ -566,7 +571,7 @@ class PlayState extends MusicBeatState
 					smallflowe2.active = false;
 					add(smallflowe2);
 
-					tree = new FlxSprite(1250, -50);
+					var tree:FlxSprite = new FlxSprite(1250, -50);
 					tree.frames = Paths.getSparrowAtlas('LordXStage/TreeAnimatedMoment', 'exe');
 					tree.animation.addByPrefix('treeanimation', 'TreeAnimated', 24);
 					tree.setGraphicSize(Std.int(tree.width * 2));
@@ -613,7 +618,7 @@ class PlayState extends MusicBeatState
 							funpillars2.active = false;
 							add(funpillars2);
 
-							funpillarts1ANIM = new FlxSprite(-400, 0);
+							var funpillarts1ANIM:FlxSprite = new FlxSprite(-400, 0);
 							funpillarts1ANIM.frames = Paths.getSparrowAtlas('FunInfiniteStage/FII_BG', 'exe');
 							funpillarts1ANIM.animation.addByPrefix('bumpypillar', 'sonicboppers', 24);
 							funpillarts1ANIM.setGraphicSize(Std.int(funpillarts1ANIM.width * 0.7));
@@ -1028,6 +1033,27 @@ class PlayState extends MusicBeatState
 		kadeEngineWatermark.cameras = [camHUD];
 		if (loadRep)
 			replayTxt.cameras = [camHUD];
+		
+		#if mobileC
+			mcontrols = new Mobilecontrols();
+			switch (mcontrols.mode)
+			{
+				case VIRTUALPAD_RIGHT | VIRTUALPAD_LEFT | VIRTUALPAD_CUSTOM:
+					controls.setVirtualPad(mcontrols._virtualPad, FULL, NONE);
+				case HITBOX:
+					controls.setHitBox(mcontrols._hitbox);
+				default:
+			}
+			trackedinputs = controls.trackedinputs;
+			controls.trackedinputs = [];
+
+			var camcontrol = new FlxCamera();
+			FlxG.cameras.add(camcontrol);
+			camcontrol.bgColor.alpha = 0;
+			mcontrols.cameras = [camcontrol];
+
+			add(mcontrols);
+		#end
 
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
