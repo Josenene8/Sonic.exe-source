@@ -4203,7 +4203,7 @@ class PlayState extends MusicBeatState
 
 	var danced:Bool = false;
 
-	var stepOfLast = 0;
+	
 
 	override function stepHit()
 	{
