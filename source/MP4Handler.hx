@@ -60,16 +60,12 @@ class MP4Handler
 		#else
 		finishCallback = callback;
 
-		var vlcBitmap:VlcBitmap = new VlcBitmap();
-		vlcBitmap.set_height(FlxG.stage.stageHeight);
-		vlcBitmap.set_width(FlxG.stage.stageHeight * (16 / 9));
+		
 
 		trace("Setting width to " + FlxG.stage.stageHeight * (16 / 9));
 		trace("Setting height to " + FlxG.stage.stageHeight);
 
-		vlcBitmap.onVideoReady = onVLCVideoReady;
-		vlcBitmap.onComplete = onVLCComplete;
-		vlcBitmap.onError = onVLCError;
+		
 
 		FlxG.stage.addEventListener(Event.ENTER_FRAME, update);
 
@@ -78,8 +74,7 @@ class MP4Handler
 		else
 			vlcBitmap.repeat = 0;
 
-		vlcBitmap.inWindow = isWindow;
-		vlcBitmap.fullscreen = isFullscreen;
+		
 
 		FlxG.addChildBelowMouse(vlcBitmap);
 		vlcBitmap.play(checkFile(path));
