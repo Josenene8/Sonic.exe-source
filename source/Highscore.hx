@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 
 using StringTools;
-class Highscore
+class Highsco
 {
 	#if (haxe >= "4.0.0")
 	public static var songScores:Map<String, Int> = new Map();
