@@ -3827,7 +3827,7 @@ class PlayState extends MusicBeatState
 						GlobalVideo.get().play();
 					}
 					
-					var data = webmHandler.webm.bitmapData;
+					
 			
 					var videoSprite:FlxSprite = new FlxSprite(-470,-30).loadGraphic(data);
 			
@@ -3844,9 +3844,9 @@ class PlayState extends MusicBeatState
 					trace('poggers');
 			
 					if (!songStarted)
-						webmHandler.pause();
+						
 					else
-						webmHandler.resume();
+						
 					#end
 				}
 	function noteMiss(direction:Int = 1, daNote:Note):Void
