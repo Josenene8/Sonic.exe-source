@@ -313,7 +313,7 @@ class TitleState extends MusicBeatState
 				var returnedData:Array<String> = [];
 				
 				
-                video.playMP4(Paths.video('bothCreditsAndIntro'), new MainMenuState()); 
+                
 				
 				http.onData = function (data:String)
 				{
