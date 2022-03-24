@@ -67,16 +67,13 @@ class MP4Handler
 
 		
 
-		FlxG.stage.addEventListener(Event.ENTER_FRAME, update);
-
-		if (repeat)
 			
 		
 			
 
 		
 
-		FlxG.addChildBelowMouse(vlcBitmap);
+		
 		
 		#end
 	}
