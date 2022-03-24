@@ -616,7 +616,7 @@ class OffsetMenu extends Option
 		trace("switch");
 		
 
-		PlayState.SONG = Song.loadFromJson(poop, "Tutorial");
+		var PlayState.SONG = Song.loadFromJson(poop, "Tutorial");
 		PlayState.isStoryMode = false;
 		PlayState.storyDifficulty = 0;
 		PlayState.storyWeek = 0;
