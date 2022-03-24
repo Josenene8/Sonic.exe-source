@@ -20,7 +20,7 @@ class Highsco
 
 
 		#if !switch
-		NGio.postScore(score, song);
+		
 		#end
 
 		if(!FlxG.save.data.botplay)
