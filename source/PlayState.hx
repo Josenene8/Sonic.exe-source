@@ -3208,20 +3208,7 @@ class PlayState extends MusicBeatState
 	var timeShown = 0;
 	var currentTimingShown:FlxText = null;
 
-	private function popUpScore(daNote:Note):Void
-		{ 
-			var noteDiff:Float = -(daNote.strumTime - Conductor.songPosition);
-			var wife:Float = EtternaFunctions.wife3(-noteDiff, Conductor.timeScale);
-			// boyfriend.playAnim('hey');
-			vocals.volume = 1;
-			var placement:String = Std.string(combo);
 	
-			var coolText:FlxText = new FlxText(0, 0, 0, placement, 32);
-			coolText.screenCenter();
-			coolText.x = FlxG.width * 0.55;
-			coolText.y -= 350;
-			coolText.cameras = [camHUD];
-			//
 	
 			var rating:FlxSprite = new FlxSprite();
 			var score:Float = 350;
