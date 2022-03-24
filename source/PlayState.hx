@@ -3519,11 +3519,6 @@ class PlayState extends MusicBeatState
 			}
 		}
 
-	public function NearlyEquals(value1:Float, value2:Float, unimportantDifference:Float = 10):Bool
-		{
-			return Math.abs(FlxMath.roundDecimal(value1, 1) - FlxMath.roundDecimal(value2, 1)) < unimportantDifference;
-		}
-
 		var upHold:Bool = false;
 		var downHold:Bool = false;
 		var rightHold:Bool = false;
