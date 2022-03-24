@@ -3845,8 +3845,6 @@ class PlayState extends MusicBeatState
 			
 					if (!songStarted)
 						
-					else
-						
 					#end
 				}
 	function noteMiss(direction:Int = 1, daNote:Note):Void
