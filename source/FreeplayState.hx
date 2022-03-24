@@ -247,7 +247,7 @@ class FreeplayState extends MusicBeatState
 
 			
 
-			var trace(poop);
+			
 			
 			var PlayState.SONG = Song.loadFromJson(poop, songs[curSelected].songName);
 			PlayState.isStoryMode = false;
