@@ -3017,8 +3017,6 @@ class PlayState extends MusicBeatState
 										health -= 0.075;
 										vocals.volume = 0;
 										if (theFunne)
-											
-									}
 							}
 		
 							daNote.visible = false;
