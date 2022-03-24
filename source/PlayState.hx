@@ -3853,18 +3853,7 @@ class PlayState extends MusicBeatState
 					{
 						GlobalVideo.get().updatePlayer();
 					}
-					GlobalVideo.get().show();
-			
-					if (GlobalVideo.isWebm)
-					{
-						GlobalVideo.get().restart();
-					} else {
-						GlobalVideo.get().play();
-					}
-					
-					videoSprite = new FlxSprite(-470,-30).loadGraphic(data);
-			
-					videoSprite.setGraphicSize(Std.int(videoSprite.width * 1.2));
+
 			
 					remove(gf);
 					remove(boyfriend);
