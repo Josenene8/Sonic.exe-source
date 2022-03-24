@@ -614,7 +614,7 @@ class OffsetMenu extends Option
 {
 	public override function press():Bool {
 		trace("switch");
-		var poop:String = Highscore.formatSong("Tutorial", 1);
+		
 
 		PlayState.SONG = Song.loadFromJson(poop, "Tutorial");
 		PlayState.isStoryMode = false;
