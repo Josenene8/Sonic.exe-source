@@ -772,7 +772,7 @@ class PlayState extends MusicBeatState
 				boyfriend.x += 260;
 				if(FlxG.save.data.distractions){
 					resetFastCar();
-					add(fastCar);
+					
 				}
 
 			case 'mall':
@@ -1737,7 +1737,7 @@ class PlayState extends MusicBeatState
 		{
 			var coolNote = dataNotes[0];
 
-			goodNoteHit(coolNote);
+			
 			var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
 			ana.hit = true;
 			ana.hitJudge = Ratings.CalculateRating(noteDiff, Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
@@ -2375,7 +2375,7 @@ class PlayState extends MusicBeatState
 		switch (curStage)
 		{
 			case 'philly':
-				if (trainMoving && !PlayStateChangeables.Optimize)
+				
 				{
 					trainFrameTiming += elapsed;
 
@@ -3006,7 +3006,7 @@ class PlayState extends MusicBeatState
 							{
 								if (daNote.noteType == 2)
 									{
-										noteMiss(daNote.noteData, daNote);
+										
 										health -= 0.3;
 										staticHitMiss();
 										vocals.volume = 0;
@@ -3017,7 +3017,7 @@ class PlayState extends MusicBeatState
 										health -= 0.075;
 										vocals.volume = 0;
 										if (theFunne)
-											noteMiss(daNote.noteData, daNote);
+											
 									}
 							}
 		
@@ -3103,8 +3103,7 @@ class PlayState extends MusicBeatState
 			}
 
 			#if !switch
-			Highscore.saveScore(songHighscore, Math.round(songScore), storyDifficulty);
-			Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(accuracy), storyDifficulty);
+			
 			#end
 		}
 
@@ -3176,7 +3175,7 @@ class PlayState extends MusicBeatState
 					if (SONG.validScore)
 					{
 						
-						Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+						
 					}
 
 					FlxG.save.flush();
@@ -3191,7 +3190,7 @@ class PlayState extends MusicBeatState
 						case 'Philly-Nice': songFormat = 'Philly';
 					}
 
-					var poop:String = Highscore.formatSong(songFormat, storyDifficulty);
+					
 
 					trace('LOADING NEXT SONG');
 					trace(poop);
@@ -3631,7 +3630,7 @@ class PlayState extends MusicBeatState
 					notes.forEachAlive(function(daNote:Note)
 					{
 						if (daNote.isSustainNote && daNote.canBeHit && daNote.mustPress && holdArray[daNote.noteData])
-							goodNoteHit(daNote);
+							
 					});
 				}
 		 
@@ -3688,7 +3687,7 @@ class PlayState extends MusicBeatState
 			
 						possibleNotes.sort((a, b) -> Std.int(a.strumTime - b.strumTime));
 						if (perfectMode)
-							goodNoteHit(possibleNotes[0]);
+							
 						else if (possibleNotes.length > 0)
 						{
 							if (!FlxG.save.data.ghost)
@@ -3696,7 +3695,7 @@ class PlayState extends MusicBeatState
 								for (shit in 0...pressArray.length)
 									{ // if a direction is hit that shouldn't be
 										if (pressArray[shit] && !directionList.contains(shit))
-											noteMiss(shit, null);
+											
 									}
 							}
 							for (coolNote in possibleNotes)
@@ -3704,13 +3703,13 @@ class PlayState extends MusicBeatState
 								if (pressArray[coolNote.noteData])
 								{
 									if (mashViolations != 0)
-										mashViolations--;
+										
 									scoreTxt.color = FlxColor.WHITE;
 									var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
 									anas[coolNote.noteData].hit = true;
 									anas[coolNote.noteData].hitJudge = Ratings.CalculateRating(noteDiff, Math.floor((PlayStateChangeables.safeFrames / 60) * 1000));
 									anas[coolNote.noteData].nearestNote = [coolNote.strumTime,coolNote.noteData,coolNote.sustainLength];
-									goodNoteHit(coolNote);
+									
 								}
 							}
 						}
@@ -3718,7 +3717,7 @@ class PlayState extends MusicBeatState
 							{
 								for (shit in 0...pressArray.length)
 									if (pressArray[shit])
-										noteMiss(shit, null);
+										
 							}
 					}
 
@@ -3743,11 +3742,11 @@ class PlayState extends MusicBeatState
 								trace(n);
 								if(n != null)
 								{
-									goodNoteHit(daNote);
+									
 									boyfriend.holdTimer = daNote.sustainLength;
 								}
 							}else {
-								goodNoteHit(daNote);
+								
 								boyfriend.holdTimer = daNote.sustainLength;
 							}
 						}
@@ -3866,7 +3865,7 @@ class PlayState extends MusicBeatState
 					trace('poggers');
 			
 					if (!songStarted)
-						webmHandler.pause();
+						
 					else
 				
 
@@ -3928,7 +3927,7 @@ class PlayState extends MusicBeatState
 			#end
 
 
-			updateAccuracy();
+			
 		}
 	}
 
@@ -4003,7 +4002,7 @@ class PlayState extends MusicBeatState
 			
 			if (controlArray[note.noteData])
 			{
-				goodNoteHit(note, (mashing > getKeyPresses(note)));
+				
 				
 				/*if (mashing > getKeyPresses(note) && mashViolations <= 2)
 				{
@@ -4189,7 +4188,7 @@ class PlayState extends MusicBeatState
 					}
 		
 					if (phillyTrain.x < -4000 && trainFinishing)
-						trainReset();
+						
 				}
 		}
 
@@ -4527,12 +4526,12 @@ class PlayState extends MusicBeatState
 						});
 		
 						if (FlxG.random.bool(10) && fastCarCanDrive)
-							fastCarDrive();
+							
 				}
 			case "philly":
 				if(FlxG.save.data.distractions){
 					if (!trainMoving)
-						trainCooldown += 1;
+						
 	
 					if (curBeat % 4 == 0)
 					{
@@ -4549,7 +4548,7 @@ class PlayState extends MusicBeatState
 
 				}
 
-				if (curBeat % 8 == 4 && FlxG.random.bool(30) && !trainMoving && trainCooldown > 8)
+				
 				{
 					if(FlxG.save.data.distractions){
 						trainCooldown = FlxG.random.int(-4, 0);
@@ -4561,7 +4560,7 @@ class PlayState extends MusicBeatState
 		if (isHalloween && FlxG.random.bool(10) && curBeat > lightningStrikeBeat + lightningOffset)
 		{
 			if(FlxG.save.data.distractions){
-				lightningStrikeShit();
+
 			}
 		}
 	}
