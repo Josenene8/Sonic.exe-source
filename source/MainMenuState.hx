@@ -81,7 +81,7 @@ class MainMenuState extends MusicBeatState
 		bg.antialiasing = true;
 		add(bg);
 
-		bgdesat = new FlxSprite(-80).loadGraphic(Paths.image('backgroundlool2'));
+		var bgdesat:FlxSprite = new FlxSprite(-80).loadGraphic(Paths.image('backgroundlool2'));
 		bgdesat.scrollFactor.x = 0;
 		bgdesat.scrollFactor.y = 0;
 		bgdesat.setGraphicSize(Std.int(bgdesat.width * .5));
@@ -93,14 +93,14 @@ class MainMenuState extends MusicBeatState
 		add(bgdesat);
 		// bgdesat.scrollFactor.set();
 
-		spikeUp = new FlxSprite(0, -65).loadGraphic(Paths.image('spikeUp'));
+		var spikeUp:FlxSprite = new FlxSprite(0, -65).loadGraphic(Paths.image('spikeUp'));
 		spikeUp.scrollFactor.x = 0;
 		spikeUp.scrollFactor.y = 0;
 		spikeUp.updateHitbox();
 		spikeUp.antialiasing = true;
 		add(spikeUp);
 
-		spikeDown = new FlxSprite(-60 , 630).loadGraphic(Paths.image('spikeDown'));
+		var spikeDown:FlxSprite = new FlxSprite(-60 , 630).loadGraphic(Paths.image('spikeDown'));
 		spikeDown.scrollFactor.x = 0;
 		spikeDown.scrollFactor.y = 0;
 		spikeDown.updateHitbox();
@@ -157,7 +157,11 @@ class MainMenuState extends MusicBeatState
 			controls.setKeyboardScheme(KeyboardScheme.Duo(true), true);
 
 		changeItem();
-
+	
+                #if mobileC
+		addVirtualPad(UP_DOWN, A_B);
+		#end
+		
 		super.create();
 	}
 
