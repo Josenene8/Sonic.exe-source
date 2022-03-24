@@ -101,7 +101,7 @@ class TitleState extends MusicBeatState
 		// var file:SMFile = SMFile.loadFile("file.sm");
 		// this was testing things
 		
-		Highscore.load();
+		
 
 
 		#if FREEPLAY
