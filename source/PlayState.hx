@@ -3832,7 +3832,7 @@ class PlayState extends MusicBeatState
 
 			public function backgroundVideo(source:String) // for background videos
 				{
-					#if cpp
+					
 					useVideo = true;
 			
 					FlxG.stage.window.onFocusOut.add(focusOut);
