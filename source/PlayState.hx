@@ -3164,7 +3164,7 @@ class PlayState extends MusicBeatState
 
 					
 					trace('LOADING NEXT SONG');
-					trace(poop);
+					
 
 					if (StringTools.replace(PlayState.storyPlaylist[0], " ", "-").toLowerCase() == 'eggnog')
 					{
@@ -3181,8 +3181,7 @@ class PlayState extends MusicBeatState
 					FlxTransitionableState.skipNextTransOut = true;
 					prevCamFollow = camFollow;
 
-
-					PlayState.SONG = Song.loadFromJson(poop, PlayState.storyPlaylist[0]);
+            
 					FlxG.sound.music.stop();
 
 					LoadingState.loadAndSwitchState(new PlayState());
@@ -3810,12 +3809,8 @@ class PlayState extends MusicBeatState
 
 					var ourSource:String = "assets/videos/daWeirdVid/dontDelete.webm";
 					WebmPlayer.SKIP_STEP_LIMIT = 90;
-					var str1:String = "WEBM SHIT"; 
-					webmHandler = new WebmHandler();
-					webmHandler.source(ourSource);
-					webmHandler.makePlayer();
 					
-			
+					        		
 					
 					GlobalVideo.get().source(source);
 					GlobalVideo.get().clearPause();
