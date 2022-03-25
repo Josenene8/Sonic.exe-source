@@ -25,56 +25,45 @@ class OptionsMenu extends MusicBeatState
 	var curSelected:Int = 0;
 
 	var options:Array<OptionCategory> = [
-		new OptionCategory("Gameplay", [
-			#if mobileC
-			new CustomControls("Edit a mobile controls..."),
-			#end
-			new DFJKOption(controls),
-			new DownscrollOption("Change the strumline to the TOP/BOTTOM of the screen."),
-			new MiddlescrollOption("Change the strumline to the RIGHT/MIDDLE of the screen."),
-			new GhostTapOption("Ghost Tapping is when you tap a direction and it doesn't give you a miss."),
-			#if mobileC
-			new FastValue("Switch speed of changing value in bottom. (e.g. offset)"),
-			#end
-			new Judgement("Customize your Hit Timings. (LEFT or RIGHT)"),
-			new FPSCapOption("Cap your FPS."),
-			new ScrollSpeedOption("Change your scroll speed. (1 = Chart dependent)"),
-			new ResetButtonOption("Toggle pressing R to gameover."),
-			// new OffsetMenu("Get a note offset based off of your inputs!")
+		new OptionCategory("Sonic exe", [
+			new JumpscareOption("Toggle the usage of jumpscares (this lowers lag by alot)")
 		]),
-
+		new OptionCategory("Gameplay", [
+			new DFJKOption(controls),
+			new DownscrollOption("Change the layout of the strumline."),
+			new GhostTapOption("Ghost Tapping is when you tap a direction and it doesn't give you a miss."),
+			new Judgement("Customize your Hit Timings (LEFT or RIGHT)"),
+			#if desktop
+			new FPSCapOption("Cap your FPS"),
+			#end
+			new ScrollSpeedOption("Change your scroll speed (1 = Chart dependent)"),
+			new AccuracyDOption("Change how accuracy is calculated. (Accurate = Simple, Complex = Milisecond Based)"),
+			new ResetButtonOption("Toggle pressing R to gameover."),
+			// new OffsetMenu("Get a note offset based off of your inputs!"),
+			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference")
+		]),
 		new OptionCategory("Appearance", [
 			new DistractionsAndEffectsOption("Toggle stage distractions that can hinder your gameplay."),
-			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
-			new WatermarkOption("Enable and disable all watermarks from the engine."),
-			new RainbowFPSOption("Make the FPS Counter Rainbow."),
+			new CamZoomOption("Toggle the camera zoom in-game."),
+			#if desktop
+			new RainbowFPSOption("Make the FPS Counter Rainbow"),
 			new AccuracyOption("Display accuracy information."),
-			new AccuracyDOption("Change how accuracy is calculated. (Accurate = Simple, Complex = Milisecond Based)"),
 			new NPSDisplayOption("Shows your current Notes Per Second."),
-			new SongPositionOption("Show the songs current position. (as a bar)"),
-			new CustomizeGameplay("Drag'n'Drop Gameplay Modules around to your preference.") #if desktop ,
-			new CpuStrums("CPU's strumline lights up when a note hits it.")
+			new SongPositionOption("Show the songs current position (as a bar)"),
+			new CpuStrums("CPU's strumline lights up when a note hits it."),
 			#end
 		]),
 		
-		new OptionCategory("Optimization", [
-			new CamZoomOption("Toggle the camera zoom in-game."),
-			new FreeplayMusic("Toggle play instrumental of songs in freeplay."),
-			// new Optimization("No backgrounds, no characters, centered notes, no player 2."),
-			new Characters("Toggle the visibility of characters."),
-			new Background("Toggle the visibility of background.")
-		]),
-
 		new OptionCategory("Misc", [
-			new FPSOption("Toggle the FPS Counter."),
 			#if desktop
-			new ReplayOption("View replays..."),
+			new FPSOption("Toggle the FPS Counter"),
+			new ReplayOption("View replays"),
 			#end
-			new ScoreScreen("Show the score screen after the end of a song."),
-			#if desktop
+			new FlashingLightsOption("Toggle flashing lights that can cause epileptic seizures and strain."),
+			new WatermarkOption("Enable and disable all watermarks from the engine."),
 			new ShowInput("Display every single input in the score screen."),
-			#end
-			new BotPlay("Showcase your charts and mods with autoplay.")
+			new Optimization("No backgrounds, no characters, centered notes, no player 2."),
+			new BotPlay("Showcase your charts and mods with autoplay."),
 		])
 		
 	];
@@ -90,9 +79,8 @@ class OptionsMenu extends MusicBeatState
 	override function create()
 	{
 		instance = this;
-		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menuDesat"));
+		var menuBG:FlxSprite = new FlxSprite().loadGraphic(Paths.image("menuBGBlue"));
 
-		menuBG.color = 0xFFea71fd;
 		menuBG.setGraphicSize(Std.int(menuBG.width * 1.1));
 		menuBG.updateHitbox();
 		menuBG.screenCenter();
@@ -113,7 +101,7 @@ class OptionsMenu extends MusicBeatState
 
 		currentDescription = "none";
 
-		versionShit = new FlxText(5, FlxG.height + 40, 0, #if mobileC "Offset (Left, Right" + (FlxG.save.data.fastValue == 0 ? "" : (FlxG.save.data.fastValue == 1 ? ", Fast value" : ", Fastest value")) + "): " #else "Offset (Left, Right, Shift for slow): " #end + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription, 12);
+		versionShit = new FlxText(5, FlxG.height + 40, 0, "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription, 12);
 		versionShit.scrollFactor.set();
 		versionShit.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		
@@ -126,10 +114,6 @@ class OptionsMenu extends MusicBeatState
 
 		FlxTween.tween(versionShit,{y: FlxG.height - 18},2,{ease: FlxEase.elasticInOut});
 		FlxTween.tween(blackBorder,{y: FlxG.height - 18},2, {ease: FlxEase.elasticInOut});
-
-		#if mobileC
-		addVirtualPad(FULL, A_B);
-		#end
 
 		super.create();
 	}
@@ -144,7 +128,10 @@ class OptionsMenu extends MusicBeatState
 		if (acceptInput)
 		{
 			if (controls.BACK && !isCat)
+				{
 				FlxG.switchState(new MainMenuState());
+				trace("back to da menu");
+				}
 			else if (controls.BACK)
 			{
 				isCat = false;
@@ -179,92 +166,71 @@ class OptionsMenu extends MusicBeatState
 				}
 			}
 			
-			if (controls.UP_P)
+			if (FlxG.keys.justPressed.UP)
 				changeSelection(-1);
-			if (controls.DOWN_P)
+			if (FlxG.keys.justPressed.DOWN)
 				changeSelection(1);
 			
 			if (isCat)
 			{
 				if (currentSelectedCat.getOptions()[curSelected].getAccept())
 				{
-					if (FlxG.keys.pressed.SHIFT #if mobileC || FlxG.save.data.fastValue != 0 #end)
-					{
-						if (controls.RIGHT)
-							currentSelectedCat.getOptions()[curSelected].right();
-						if (controls.LEFT)
-							currentSelectedCat.getOptions()[curSelected].left();
-					}
-					else //fastvalue == 0
+					if (FlxG.keys.pressed.SHIFT)
 						{
-							if (controls.RIGHT_P)
+							if (FlxG.keys.pressed.RIGHT)
 								currentSelectedCat.getOptions()[curSelected].right();
-							if (controls.LEFT_P)
+							if (FlxG.keys.pressed.LEFT)
 								currentSelectedCat.getOptions()[curSelected].left();
 						}
+					else
+					{
+						if (FlxG.keys.justPressed.RIGHT)
+							currentSelectedCat.getOptions()[curSelected].right();
+						if (FlxG.keys.justPressed.LEFT)
+							currentSelectedCat.getOptions()[curSelected].left();
+					}
 				}
 				else
 				{
-					if (FlxG.keys.pressed.SHIFT #if mobileC || FlxG.save.data.fastValue == 0 #end)
+					if (FlxG.keys.pressed.SHIFT)
 					{
-						if (controls.RIGHT_P)
+						if (FlxG.keys.justPressed.RIGHT)
 							FlxG.save.data.offset += 0.1;
-						else if (controls.LEFT_P)
+						else if (FlxG.keys.justPressed.LEFT)
 							FlxG.save.data.offset -= 0.1;
 					}
-					#if mobileC
-					else if (FlxG.save.data.fastValue == 2)
-					{
-						if (controls.RIGHT)
-							FlxG.save.data.offset += 1;
-						else if (controls.LEFT)
-							FlxG.save.data.offset -= 1;
-					}
-					#end
-					//fastvalue == 1
-					else if (controls.RIGHT)
+					else if (FlxG.keys.pressed.RIGHT)
 						FlxG.save.data.offset += 0.1;
-					else if (controls.LEFT)
+					else if (FlxG.keys.pressed.LEFT)
 						FlxG.save.data.offset -= 0.1;
 					
-					versionShit.text = #if mobileC "Offset (Left, Right" + (FlxG.save.data.fastValue == 0 ? "" : (FlxG.save.data.fastValue == 1 ? ", Fast value" : ", Fastest value")) + "): " #else "Offset (Left, Right, Shift for slow): " #end + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+					versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
 				}
 				if (currentSelectedCat.getOptions()[curSelected].getAccept())
 					versionShit.text =  currentSelectedCat.getOptions()[curSelected].getValue() + " - Description - " + currentDescription;
 				else
-					versionShit.text = #if mobileC "Offset (Left, Right" + (FlxG.save.data.fastValue == 0 ? "" : (FlxG.save.data.fastValue == 1 ? ", Fast value" : ", Fastest value")) + "): " #else "Offset (Left, Right, Shift for slow): " #end + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+					versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
 			}
 			else
 			{
-				if (FlxG.keys.pressed.SHIFT #if mobileC || FlxG.save.data.fastValue == 0 #end)
+				if (FlxG.keys.pressed.SHIFT)
 				{
-					if (controls.RIGHT_P)
+					if (FlxG.keys.justPressed.RIGHT)
 						FlxG.save.data.offset += 0.1;
-					else if (controls.LEFT_P)
+					else if (FlxG.keys.justPressed.LEFT)
 						FlxG.save.data.offset -= 0.1;
 				}
-				#if mobileC
-				else if (FlxG.save.data.fastValue == 2)
-				{
-					if (controls.RIGHT)
-						FlxG.save.data.offset += 1;
-					else if (controls.LEFT)
-						FlxG.save.data.offset -= 1;
-				}
-				#end
-				//fastvalue == 1
-				else if (controls.RIGHT)
+				else if (FlxG.keys.pressed.RIGHT)
 					FlxG.save.data.offset += 0.1;
-				else if (controls.LEFT)
+				else if (FlxG.keys.pressed.LEFT)
 					FlxG.save.data.offset -= 0.1;
 				
-				versionShit.text = #if mobileC "Offset (Left, Right" + (FlxG.save.data.fastValue == 0 ? "" : (FlxG.save.data.fastValue == 1 ? ", Fast value" : ", Fastest value")) + "): " #else "Offset (Left, Right, Shift for slow): " #end + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+				versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
 			}
 		
-			#if !mobileC
+
 			if (controls.RESET)
 					FlxG.save.data.offset = 0;
-			#end
 
 			if (controls.ACCEPT)
 			{
@@ -300,7 +266,11 @@ class OptionsMenu extends MusicBeatState
 	var isSettingControl:Bool = false;
 
 	function changeSelection(change:Int = 0)
-	{		
+	{
+		#if !switch
+		// NGio.logEvent("Fresh");
+		#end
+		
 		FlxG.sound.play(Paths.sound("scrollMenu"), 0.4);
 
 		curSelected += change;
@@ -319,10 +289,10 @@ class OptionsMenu extends MusicBeatState
 			if (currentSelectedCat.getOptions()[curSelected].getAccept())
 				versionShit.text =  currentSelectedCat.getOptions()[curSelected].getValue() + " - Description - " + currentDescription;
 			else
-				versionShit.text = #if mobileC "Offset (Left, Right" + (FlxG.save.data.fastValue == 0 ? "" : (FlxG.save.data.fastValue == 1 ? ", Fast value" : ", Fastest value")) + "): " #else "Offset (Left, Right, Shift for slow): " #end + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+				versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
 		}
 		else
-			versionShit.text = #if mobileC "Offset (Left, Right" + (FlxG.save.data.fastValue == 0 ? "" : (FlxG.save.data.fastValue == 1 ? ", Fast value" : ", Fastest value")) + "): " #else "Offset (Left, Right, Shift for slow): " #end + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
+			versionShit.text = "Offset (Left, Right, Shift for slow): " + HelperFunctions.truncateFloat(FlxG.save.data.offset,2) + " - Description - " + currentDescription;
 		// selector.y = (70 * curSelected) + 30;
 
 		var bullShit:Int = 0;
