@@ -3803,8 +3803,7 @@ class PlayState extends MusicBeatState
 
 			public function backgroundVideo(source:String) // for background videos
 				{
-					#if cpp
-					useVideo = true;
+					
 			
 					FlxG.stage.window.onFocusOut.add(focusOut);
 					FlxG.stage.window.onFocusIn.add(focusIn);
@@ -3812,7 +3811,7 @@ class PlayState extends MusicBeatState
 					var ourSource:String = "assets/videos/daWeirdVid/dontDelete.webm";
 					WebmPlayer.SKIP_STEP_LIMIT = 90;
 					var str1:String = "WEBM SHIT"; 
-					webmHandler = new WebmHandler();
+					
 					
 			
 					
