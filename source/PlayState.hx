@@ -3845,14 +3845,10 @@ class PlayState extends MusicBeatState
 					if (curStage != 'sonicFUNSTAGE') add(gf);
 					add(boyfriend);
 					add(dad);
-			
-					trace('poggers');
-			
-					if (!songStarted)
 						
 					
-						
-				}
+	
+				
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
