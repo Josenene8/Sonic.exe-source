@@ -3,7 +3,7 @@ package;
 import flixel.FlxG;
 
 using StringTools;
-class Highsco
+class Highscore
 {
 	#if (haxe >= "4.0.0")
 	public static var songScores:Map<String, Int> = new Map();
@@ -17,11 +17,6 @@ class Highsco
 	public static function saveScore(song:String, score:Int = 0, ?diff:Int = 0):Void
 	{
 		var daSong:String = formatSong(song, diff);
-
-
-		#if !switch
-		
-		#end
 
 		if(!FlxG.save.data.botplay)
 		{
@@ -54,11 +49,6 @@ class Highsco
 
 	public static function saveWeekScore(week:Int = 1, score:Int = 0, ?diff:Int = 0):Void
 	{
-
-		#if !switch
-		
-		#end
-
 		if(!FlxG.save.data.botplay)
 		{
 			var daWeek:String = formatSong('week' + week, diff);
