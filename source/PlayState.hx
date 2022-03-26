@@ -3077,7 +3077,8 @@ class PlayState extends MusicBeatState
 			}
 
 			#if !switch
-			
+			Highscore.saveScore(songHighscore, Math.round(songScore), storyDifficulty);
+			Highscore.saveCombo(songHighscore, Ratings.GenerateLetterRank(accuracy), storyDifficulty);
 			#end
 		}
 
@@ -3148,7 +3149,8 @@ class PlayState extends MusicBeatState
 					
 					if (SONG.validScore)
 					{
-						
+						NGio.unlockMedal(60961);
+						Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 					}
 
 					FlxG.save.flush();
@@ -3165,7 +3167,8 @@ class PlayState extends MusicBeatState
 
 					var poop:String = Highscore.formatSong(songFormat, storyDifficulty);
 
-					
+					trace('LOADING NEXT SONG');
+					trace(poop);
 
 					if (StringTools.replace(PlayState.storyPlaylist[0], " ", "-").toLowerCase() == 'eggnog')
 					{
@@ -3803,7 +3806,8 @@ class PlayState extends MusicBeatState
 
 			public function backgroundVideo(source:String) // for background videos
 				{
-					
+					#if cpp
+					useVideo = true;
 			
 					FlxG.stage.window.onFocusOut.add(focusOut);
 					FlxG.stage.window.onFocusIn.add(focusIn);
@@ -3811,10 +3815,12 @@ class PlayState extends MusicBeatState
 					var ourSource:String = "assets/videos/daWeirdVid/dontDelete.webm";
 					WebmPlayer.SKIP_STEP_LIMIT = 90;
 					var str1:String = "WEBM SHIT"; 
-					
-					
+					webmHandler = new WebmHandler();
+					webmHandler.source(ourSource);
+					webmHandler.makePlayer();
+					webmHandler.webm.name = str1;
 			
-					
+					GlobalVideo.setWebm(webmHandler);
 
 					GlobalVideo.get().source(source);
 					GlobalVideo.get().clearPause();
@@ -3835,7 +3841,7 @@ class PlayState extends MusicBeatState
 			
 					videoSprite = new FlxSprite(-470,-30).loadGraphic(data);
 			
-					
+					videoSprite.setGraphicSize(Std.int(videoSprite.width * 1.2));
 			
 					remove(gf);
 					remove(boyfriend);
@@ -3844,10 +3850,15 @@ class PlayState extends MusicBeatState
 					if (curStage != 'sonicFUNSTAGE') add(gf);
 					add(boyfriend);
 					add(dad);
-						
-					
-	
-				
+			
+					trace('poggers');
+			
+					if (!songStarted)
+						webmHandler.pause();
+					else
+						webmHandler.resume();
+					#end
+				}
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
@@ -4207,6 +4218,13 @@ class PlayState extends MusicBeatState
 
 	var stepOfLast = 0;
 
+	override function stepHit()
+	{
+		super.stepHit();
+		if (FlxG.sound.music.time > Conductor.songPosition + 20 || FlxG.sound.music.time < Conductor.songPosition - 20)
+		{
+			resyncVocals();
+		}
 
 		if (dad.curCharacter == 'sonic' && SONG.song.toLowerCase() == 'too-slow')
 			{
