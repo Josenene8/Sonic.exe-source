@@ -4107,7 +4107,7 @@ class PlayState extends MusicBeatState
 				switch(curStep)
 				{
 					case 909:
-					camLocked = false;
+					
 					camFollow.setPosition(GameDimensions.width / 2 + 200, GameDimensions.height / 4 * 3 + 100);
 					FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 0.7, {ease: FlxEase.cubeInOut});
 					three();
@@ -4118,13 +4118,12 @@ class PlayState extends MusicBeatState
 					FlxTween.tween(FlxG.camera, {zoom: FlxG.camera.zoom + 0.3}, 0.7, {ease: FlxEase.cubeInOut});
 					one();
 					case 923:
-					camLocked = true;
+					
 					FlxTween.tween(FlxG.camera, {zoom: defaultCamZoom}, 0.7, {ease: FlxEase.cubeInOut});
 					gofun();
 					SONG.noteStyle = 'majinNOTES';
-					removeStatics();
-					generateStaticArrows(0, false);
-					generateStaticArrows(1, false);
+					
+					
 				}
 			}
 
