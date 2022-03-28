@@ -142,6 +142,10 @@ class PlayState extends MusicBeatState
 	private var songPositionBar:Float = 0;
 	
 	private var generatedMusic:Bool = false;
+	
+	private var shakeCam:Bool = false;
+	private var shakeCam2:Bool = false;
+	
 	private var startingSong:Bool = false;
 
 	public var iconP1:HealthIcon; //making these public again because i may be stupid
