@@ -80,7 +80,9 @@ class PlayState extends MusicBeatState
 	public static var bads:Int = 0;
 	public static var goods:Int = 0;
 	public static var sicks:Int = 0;
-
+	
+        var spinArray:Array<Int>;
+	
 	public static var songPosBG:FlxSprite;
 	public static var songPosBar:FlxBar;
 
