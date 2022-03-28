@@ -795,7 +795,7 @@ class PlayState extends MusicBeatState
 					floor.active = false;
 					add(floor);
 						
-					eyeflower = new FlxSprite(-200,300);
+					var eyeflower:FlxSprite = new FlxSprite(-200,300);
 					eyeflower.frames = Paths.getSparrowAtlas('LordXStage/ANIMATEDeye', 'exe');
 					eyeflower.animation.addByPrefix('animatedeye', 'EyeAnimated', 24);
 					eyeflower.setGraphicSize(Std.int(eyeflower.width * 2));
@@ -804,7 +804,7 @@ class PlayState extends MusicBeatState
 					add(eyeflower);
 						
 						
-					hands = new FlxSprite(-200, -600); 
+					var hands:FlxSprite = new FlxSprite(-200, -600); 
 					hands.frames = Paths.getSparrowAtlas('LordXStage/SonicXHandsAnimated', 'exe');
 					hands.animation.addByPrefix('handss', 'HandsAnimated', 24);
 					hands.setGraphicSize(Std.int(hands.width * .5));
@@ -819,7 +819,7 @@ class PlayState extends MusicBeatState
 					smallflower.active = false;
 					add(smallflower);
 						
-					tree = new FlxSprite(1250, -50);
+					var tree:FlxSprite = new FlxSprite(1250, -50);
 					tree.frames = Paths.getSparrowAtlas('LordXStage/TreeAnimatedMoment', 'exe');
 					tree.animation.addByPrefix('treeanimation', 'TreeAnimated', 24);
 					tree.setGraphicSize(Std.int(tree.width * 2));
@@ -844,6 +844,35 @@ class PlayState extends MusicBeatState
 							funsky.scrollFactor.set(0.3, 0.3);
 							funsky.active = false;
 							add(funsky);
+
+							var funfloor:FlxSprite = new FlxSprite(-600, -400).loadGraphic(Paths.image('FunInfiniteStage/sonicFUNfloor'));
+							funfloor.setGraphicSize(Std.int(funfloor.width * 0.9), Std.int(funfloor.height * 1.2));
+							funfloor.antialiasing = true;
+							funfloor.scrollFactor.set(0.5, 0.5);
+							funfloor.active = false;
+							add(funfloor);
+
+							var funpillars3:FlxSprite = new FlxSprite(-600, -0).loadGraphic(Paths.image('FunInfiniteStage/sonicFUNpillars3'));
+							funpillars3.setGraphicSize(Std.int(funpillars3.width * 0.7));
+							funpillars3.antialiasing = true;
+							funpillars3.scrollFactor.set(0.6, 0.7);
+							funpillars3.active = false;
+							add(funpillars3);
+
+							var funpillars2:FlxSprite = new FlxSprite(-600, -0).loadGraphic(Paths.image('FunInfiniteStage/sonicFUNpillars2'));
+							funpillars2.setGraphicSize(Std.int(funpillars2.width * 0.7));
+							funpillars2.antialiasing = true;
+							funpillars2.scrollFactor.set(0.7, 0.7);
+							funpillars2.active = false;
+							add(funpillars2);
+
+							var funpillarts1ANIM:FlxSprite = new FlxSprite(-400, 0);
+							funpillarts1ANIM.frames = Paths.getSparrowAtlas('FunInfiniteStage/FII_BG', 'exe');
+							funpillarts1ANIM.animation.addByPrefix('bumpypillar', 'sonicboppers', 24);
+							funpillarts1ANIM.setGraphicSize(Std.int(funpillarts1ANIM.width * 0.7));
+							funpillarts1ANIM.antialiasing = true;
+							funpillarts1ANIM.scrollFactor.set(0.82, 0.82);
+							add(funpillarts1ANIM);
 						
 						
 						
