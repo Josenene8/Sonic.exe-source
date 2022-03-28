@@ -1396,7 +1396,7 @@ class PlayState extends MusicBeatState
 		if (!loadRep)
 			rep = new Replay("na");
 
-		FlxG.stage.addEventListener(KeyboardEvent.KEY_DOWN,handleInput);
+		
 
 		super.create();
 	}
@@ -4059,7 +4059,9 @@ class PlayState extends MusicBeatState
 	}
 
 	var danced:Bool = false;
-
+			
+        var stepOfLast = 0;
+		
         override function stepHit()
 	{
 		super.stepHit();
