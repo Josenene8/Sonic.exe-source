@@ -694,6 +694,7 @@ class PlayState extends MusicBeatState
 					*/
 			
 			//SONG 1 STAGE
+			}
 			case 'sonicStage':
 				{	
 				defaultCamZoom = 1.0;
