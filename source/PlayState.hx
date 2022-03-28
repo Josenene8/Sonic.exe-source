@@ -692,6 +692,7 @@ class PlayState extends MusicBeatState
 								add(waveSprite);
 								add(waveSpriteFG);
 					*/
+			
 			//SONG 1 STAGE
 			case 'sonicStage':
 				{	
