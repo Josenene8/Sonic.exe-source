@@ -1641,8 +1641,6 @@ class PlayState extends MusicBeatState
 
 	var startTimer:FlxTimer;
 	var perfectMode:Bool = false;
-	var startTimer:FlxTimer;
-	var perfectMode:Bool = false;
 
 	var luaWiggles:Array<WiggleEffect> = [];
 
@@ -1738,8 +1736,6 @@ class PlayState extends MusicBeatState
 
 		generateStaticArrows(0, doesitTween);
 		generateStaticArrows(1, doesitTween);
-
-
 		#if windows
 		// pre lowercasing the song name (startCountdown)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
@@ -3165,7 +3161,7 @@ class PlayState extends MusicBeatState
 					if (SONG.validScore)
 					{
 
-						Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
+						
 					}
 
 					FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
@@ -3173,7 +3169,7 @@ class PlayState extends MusicBeatState
 				}
 				else
 				{
-					var difficulty:String = "";
+					var difficulty:String = "normal";
 
 					if (storyDifficulty == 0)
 						difficulty = '-easy';
