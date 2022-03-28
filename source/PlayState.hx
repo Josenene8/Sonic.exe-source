@@ -154,6 +154,11 @@ class PlayState extends MusicBeatState
 	var notesHitArray:Array<Date> = [];
 	var currentFrames:Int = 0;
 
+	
+	var daSection:Int = 1;
+	var daJumpscare:FlxSprite = new FlxSprite(0, 0);
+	
+	
 	public var dialogue:Array<String> = ['dad:blah blah blah', 'bf:coolswag'];
 
 	var halloweenBG:FlxSprite;
@@ -240,7 +245,7 @@ class PlayState extends MusicBeatState
 		startText = new FlxSprite();
 
 
-		spinArray = [272, 276, 336, 340, 400, 404, 464, 468, 528, 532, 592, 596, 656, 660, 720, 724, 789, 793, 863, 867, 937, 941, 1012, 1016, 1086, 1090, 1160, 1164, 1531, 1535, 1607, 1611, 1681, 1685, 1754, 1758];
+		var spinArray = [272, 276, 336, 340, 400, 404, 464, 468, 528, 532, 592, 596, 656, 660, 720, 724, 789, 793, 863, 867, 937, 941, 1012, 1016, 1086, 1090, 1160, 1164, 1531, 1535, 1607, 1611, 1681, 1685, 1754, 1758];
 
 		instance = this;
 	
@@ -1409,11 +1414,11 @@ class PlayState extends MusicBeatState
 
 			daNoteStatic.animation.play('static');
 
-			shakeCam2 = true;
+			
 
 			new FlxTimer().start(0.8, function(tmr:FlxTimer)
 				{
-					shakeCam2 = false;
+					
 				});
 
 
@@ -1526,7 +1531,7 @@ class PlayState extends MusicBeatState
 			trace ('JUMPSCARE aaaa');
 			
 			
-	
+	                
 			daJumpscare.frames = Paths.getSparrowAtlas('sonicJUMPSCARE', 'exe');
 			daJumpscare.animation.addByPrefix('jump','sonicSPOOK',24, false);
 			
@@ -1734,8 +1739,8 @@ class PlayState extends MusicBeatState
 
 		inCutscene = false;
 
-		generateStaticArrows(0, doesitTween);
-		generateStaticArrows(1, doesitTween);
+		
+		
 		#if windows
 		// pre lowercasing the song name (startCountdown)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
@@ -3156,7 +3161,7 @@ class PlayState extends MusicBeatState
 					#end
 
 					// if ()
-					StoryMenuState.weekUnlocked[Std.int(Math.min(storyWeek + 1, StoryMenuState.weekUnlocked.length - 1))] = true;
+					
 
 					if (SONG.validScore)
 					{
@@ -3164,7 +3169,7 @@ class PlayState extends MusicBeatState
 						
 					}
 
-					FlxG.save.data.weekUnlocked = StoryMenuState.weekUnlocked;
+					
 					FlxG.save.flush();
 				}
 				else
