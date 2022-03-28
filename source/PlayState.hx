@@ -170,7 +170,15 @@ class PlayState extends MusicBeatState
 	var upperBoppers:FlxSprite;
 	var bottomBoppers:FlxSprite;
 	var santa:FlxSprite;
-
+        var funpillarts1ANIM:FlxSprite;
+	var hands:FlxSprite;
+	var tree:FlxSprite;
+	var eyeflower:FlxSprite;
+	var blackFuck:FlxSprite;
+	var startCircle:FlxSprite;
+	var startText:FlxSprite;
+	
+	
 	var fc:Bool = true;
 
 	var bgGirls:BackgroundGirls;
@@ -224,8 +232,19 @@ class PlayState extends MusicBeatState
 
 	override public function create()
 	{
+		SONG.noteStyle = ChartingState.defaultnoteStyle;
+
+		blackFuck = new FlxSprite().makeGraphic(1280,720, FlxColor.BLACK);
+
+		startCircle = new FlxSprite();
+		startText = new FlxSprite();
+
+
+		spinArray = [272, 276, 336, 340, 400, 404, 464, 468, 528, 532, 592, 596, 656, 660, 720, 724, 789, 793, 863, 867, 937, 941, 1012, 1016, 1086, 1090, 1160, 1164, 1531, 1535, 1607, 1611, 1681, 1685, 1754, 1758];
+
 		instance = this;
-		
+	
+
 		if (FlxG.save.data.fpsCap > 290)
 			(cast (Lib.current.getChildAt(0), Main)).setFPSCap(800);
 		
@@ -672,34 +691,164 @@ class PlayState extends MusicBeatState
 								// waveSpriteFG.updateHitbox();
 								add(waveSprite);
 								add(waveSpriteFG);
-						*/
-			}
-			case 'stage':
-				{
-						defaultCamZoom = 0.9;
-						curStage = 'stage';
-						var bg:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('stageback'));
-						bg.antialiasing = true;
-						bg.scrollFactor.set(0.9, 0.9);
-						bg.active = false;
-						add(bg);
+				}		*/
+			//SONG 1 STAGE
+			case 'sonicStage':
+				{	
+				defaultCamZoom = 1.0;
+				curStage = 'SONICstage';
+
+
+
+				var sSKY:FlxSprite = new FlxSprite(-300, 0).loadGraphic(Paths.image('SonicStages/sky'));
+				sSKY.antialiasing = true;
+				sSKY.scrollFactor.set(0.85, 0.85);
+				sSKY.active = false;
+				add(sSKY);
+
+				var bg2:FlxSprite = new FlxSprite(-300, -125).loadGraphic(Paths.image('SonicStages/floor2'));
+				bg2.updateHitbox();
+				bg2.antialiasing = true;
+				bg2.scrollFactor.set(0.9, 0.9);
+				bg2.active = false;
+				add(bg2);
+				
+				
+				var bg:FlxSprite = new FlxSprite(-300, -100).loadGraphic(Paths.image('SonicStages/floor1'));
+				bg.antialiasing = true;
+				bg.scrollFactor.set(0.95, 0.95);
+				bg.active = false;
+				add(bg);
+				
+				
+				var eggman:FlxSprite = new FlxSprite(-260, -120).loadGraphic(Paths.image('SonicStages/eggman'));
+				eggman.setGraphicSize(Std.int(eggman.width * 0.9));
+				eggman.updateHitbox();
+				eggman.antialiasing = true;
+				eggman.scrollFactor.set(.95, .95);
+				eggman.active = false;
+				
+                                add(eggman);
+				
+				var tail:FlxSprite = new FlxSprite(-280, -100).loadGraphic(Paths.image('SonicStages/tail'));
+				tail.setGraphicSize(Std.int(tail.width * 0.9));
+				tail.updateHitbox();
+				tail.antialiasing = true;
+				tail.scrollFactor.set(.99, .99);
+				tail.active = false;
+
+				add(tail);
+				
+				var knuckle:FlxSprite = new FlxSprite(315, 0).loadGraphic(Paths.image('SonicStages/knuckle'));
+				knuckle.setGraphicSize(Std.int(knuckle.width * 0.9));
+				knuckle.updateHitbox();
+				knuckle.antialiasing = true;
+				knuckle.scrollFactor.set(.99, .99);
+				knuckle.active = false;
+
+				add(knuckle);
+						
 	
-						var stageFront:FlxSprite = new FlxSprite(-650, 600).loadGraphic(Paths.image('stagefront'));
-						stageFront.setGraphicSize(Std.int(stageFront.width * 1.1));
-						stageFront.updateHitbox();
-						stageFront.antialiasing = true;
-						stageFront.scrollFactor.set(0.9, 0.9);
-						stageFront.active = false;
-						add(stageFront);
-	
-						var stageCurtains:FlxSprite = new FlxSprite(-500, -300).loadGraphic(Paths.image('stagecurtains'));
-						stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
-						stageCurtains.updateHitbox();
-						stageCurtains.antialiasing = true;
-						stageCurtains.scrollFactor.set(1.3, 1.3);
-						stageCurtains.active = false;
-	
-						add(stageCurtains);
+				var sticklol:FlxSprite = new FlxSprite(-300, -50).loadGraphic(Paths.image('SonicStages/sticklol'));
+				sticklol.setGraphicSize(Std.int(sticklol.width * 0.9));
+				sticklol.updateHitbox();
+				sticklol.antialiasing = true;
+				sticklol.scrollFactor.set(1, 1);
+				sticklol.active = false;
+
+				add(sticklol);	
+				
+				
+				}
+				case 'LordXStage': //epic
+					{	
+					defaultCamZoom = .73;
+					curStage = 'LordXStage';
+						
+			
+						
+					var sky:FlxSprite = new FlxSprite(-1900, -1006).loadGraphic(Paths.image('LordXStage/sky'));
+					sky.setGraphicSize(Std.int(sky.width * .5));
+					sky.antialiasing = true;
+					sky.scrollFactor.set(.95, 1);
+					sky.active = false;
+					add(sky);
+						
+					var hills1:FlxSprite = new FlxSprite(-1900, -1006).loadGraphic(Paths.image('LordXStage/hills1'));
+					hills1.setGraphicSize(Std.int(hills1.width * .5));
+					hills1.antialiasing = true;
+					hills1.scrollFactor.set(.95, 1);
+					hills1.active = false;
+					add(hills1);
+						
+					var hills2:FlxSprite = new FlxSprite(-1900, -1006).loadGraphic(Paths.image('LordXStage/hills2'));
+					hills2.setGraphicSize(Std.int(hills2.width * .5));
+					hills2.antialiasing = true;
+					hills2.scrollFactor.set(.97, 1);
+					hills2.active = false;
+					add(hills2);
+						
+					var floor:FlxSprite = new FlxSprite(-1900, -996).loadGraphic(Paths.image('LordXStage/floor'));
+					floor.setGraphicSize(Std.int(floor.width * .5));
+					floor.antialiasing = true;
+					floor.scrollFactor.set(1, 1);
+					floor.active = false;
+					add(floor);
+						
+					eyeflower = new FlxSprite(-200,300);
+					eyeflower.frames = Paths.getSparrowAtlas('LordXStage/ANIMATEDeye', 'exe');
+					eyeflower.animation.addByPrefix('animatedeye', 'EyeAnimated', 24);
+					eyeflower.setGraphicSize(Std.int(eyeflower.width * 2));
+					eyeflower.antialiasing = true;
+					eyeflower.scrollFactor.set(1, 1);
+					add(eyeflower);
+						
+						
+					hands = new FlxSprite(-200, -600); 
+					hands.frames = Paths.getSparrowAtlas('LordXStage/SonicXHandsAnimated', 'exe');
+					hands.animation.addByPrefix('handss', 'HandsAnimated', 24);
+					hands.setGraphicSize(Std.int(hands.width * .5));
+					hands.antialiasing = true;
+					hands.scrollFactor.set(1, 1);
+					add(hands);
+						
+					var smallflower:FlxSprite = new FlxSprite(-1900, -1006).loadGraphic(Paths.image('LordXStage/smallflower'));
+					smallflower.setGraphicSize(Std.int(smallflower.width * .5));
+					smallflower.antialiasing = true;
+					smallflower.scrollFactor.set(1.005, 1.005);
+					smallflower.active = false;
+					add(smallflower);
+						
+					tree = new FlxSprite(1250, -50);
+					tree.frames = Paths.getSparrowAtlas('LordXStage/TreeAnimatedMoment', 'exe');
+					tree.animation.addByPrefix('treeanimation', 'TreeAnimated', 24);
+					tree.setGraphicSize(Std.int(tree.width * 2));
+					tree.antialiasing = true;
+					tree.scrollFactor.set(1, 1);
+					add(tree);
+						
+						
+						
+						
+					}
+				//SECRET SONG STAGE!!!   Really razen... you really had to say it here?
+				
+					case 'sonicfunStage':
+					{
+							defaultCamZoom = 0.9;
+							curStage = 'sonicFUNSTAGE';
+
+							var funsky:FlxSprite = new FlxSprite(-600, -200).loadGraphic(Paths.image('FunInfiniteStage/sonicFUNsky'));
+							funsky.setGraphicSize(Std.int(funsky.width * 0.9));
+							funsky.antialiasing = true;
+							funsky.scrollFactor.set(0.3, 0.3);
+							funsky.active = false;
+							add(funsky);
+						
+						
+						
+					
+
 				}
 			default:
 			{
