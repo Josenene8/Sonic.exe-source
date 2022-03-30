@@ -355,7 +355,11 @@ class SoundTestMenu extends MusicBeatState
 			}
         }
 	}
-		
+	
+	#if mobileC
+	addVirtualPad(FULL, A_B);
+	#end
+
 	override public function update(elapsed:Float)
 		{
 			if (FlxG.keys.justPressed.RIGHT || FlxG.keys.justPressed.LEFT || FlxG.keys.justPressed.A || FlxG.keys.justPressed.D) if (woahmanstopspammin) funnymonke = !funnymonke;
