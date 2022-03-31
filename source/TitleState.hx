@@ -55,7 +55,13 @@ class TitleState extends MusicBeatState
 	override public function create():Void
 	{
 		
-
+		#if android
+		FlxG.android.preventDefaultKeys = [BACK];
+		#end
+                FlxG.mouse.visible = false;
+		
+		FlxG.worldBounds.set(0, 0);
+		
 		@:privateAccess
 		{
 			trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
