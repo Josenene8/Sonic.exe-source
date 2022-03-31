@@ -527,6 +527,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
+			
                         #if mobile
 			addVirtualPad(FULL, A);
 			#end
