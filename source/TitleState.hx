@@ -528,10 +528,6 @@ class TitleState extends MusicBeatState
 		{
 			remove(ngSpr);
 			
-                        #if mobile
-			addVirtualPad(FULL, A);
-			#end
-			
 			FlxG.sound.play(Paths.sound('showMoment', 'shared'), .4);
 
 			FlxG.camera.flash(FlxColor.RED, 2);
