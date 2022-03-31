@@ -140,10 +140,7 @@ class TitleState extends MusicBeatState
 			// FlxG.sound.list.add(music);
 			// music.play();
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-                        VideoState('assets/videos/bothCreditsAndIntro.webm', new MainMenuState()));
-			
-			FlxG.switchState(new StoryMenuState());
-			
+                        
 			FlxG.sound.music.fadeIn(5, 0, 0.7);
 		}
 
