@@ -3191,7 +3191,21 @@ class PlayState extends MusicBeatState
 
 					PlayState.SONG = Song.loadFromJson(nextSongLowercase + difficulty, PlayState.storyPlaylist[0]);
 					FlxG.sound.music.stop();
-
+					
+                                        if (curSong.toLowerCase() == 'too-slow' && storyDifficulty == 2)
+					{
+						FlxG.save.data.storyProgress = 1;
+						LoadingState.loadAndSwitchState(new VideoState('assets/videos/tooslowcutscene1.webm', (new PlayState())));  
+					}
+					else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2)
+		
+					if (curSong.toLowerCase() == 'too-slow' && storyDifficulty == 2)
+					{
+						FlxG.save.data.storyProgress = 1;
+						LoadingState.loadAndSwitchState(new VideoState('assets/videos/tooslowcutscene2.webm', (new PlayState())));  
+					}	
+					else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2)
+						
 					LoadingState.loadAndSwitchState(new PlayState());
 				}
 			}
