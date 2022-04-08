@@ -306,7 +306,7 @@ class TitleState extends MusicBeatState
 				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
 				var returnedData:Array<String> = [];
 				
-				 
+				 FlxG.switchState(new VideoState('bothCreditsAndIntro.webm', new MainMenuState()));
 					
 
 				
