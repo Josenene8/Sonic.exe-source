@@ -3206,6 +3206,8 @@ class PlayState extends MusicBeatState
 					}	
 					else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2)
 						
+					FlxG.switchState(new VideoState('bothCreditsAndIntro.webm', new MainMenuState()));
+						
 					LoadingState.loadAndSwitchState(new PlayState());
 				}
 			}
