@@ -3117,7 +3117,7 @@ class PlayState extends MusicBeatState
 				if (storyPlaylist.length <= 0)
 				{    
 					
-				FlxG.switchState(new VideoState('assets/videos/bothCreditsAndIntro.webm', new MainMenuState()));
+				FlxG.switchState(new VideoState('assets/videos/bothCreditsAndIntro', new MainMenuState()));
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
 
 					transIn = FlxTransitionableState.defaultTransIn;
