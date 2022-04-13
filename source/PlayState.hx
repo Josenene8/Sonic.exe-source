@@ -3815,7 +3815,7 @@ class PlayState extends MusicBeatState
 					var ourSource:String = "assets/videos/daWeirdVid/dontDelete.webm";
 					WebmPlayer.SKIP_STEP_LIMIT = 90;
 					var str1:String = "WEBM SHIT"; 
-					webmHandler = new WebmHandler();
+					var webmHandler:WebmHandler = new WebmHandler();
 					webmHandler.source(ourSource);
 					webmHandler.makePlayer();
 					webmHandler.webm.name = str1;
