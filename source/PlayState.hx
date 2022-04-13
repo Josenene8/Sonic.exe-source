@@ -3113,21 +3113,18 @@ class PlayState extends MusicBeatState
 					}
 					else if (curSong.toLowerCase() == 'too-slow' && FlxG.save.data.soundTestUnlocked)
 					{
-						var video:MP4Handler = new MP4Handler();
-						video.playMP4(Paths.video('tooslowcutscene2'), new MainMenuState()); 
+						
 						//FlxG.switchState(new MainMenuState());
 					}
 					else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty == 2 && !FlxG.save.data.soundTestUnlocked)
 					{
-						var video:MP4Handler = new MP4Handler();
-						video.playMP4(Paths.video('tooslowcutscene2'), new UnlockScreen(true, 'soundtest')); 
+						
 
 						//LoadingState.loadAndSwitchState(new UnlockScreen(true, 'soundtest'));
 					}
 					else if (curSong.toLowerCase() == 'too-slow' && storyDifficulty != 2 && !FlxG.save.data.soundTestUnlocked)
 						{
-							var video:MP4Handler = new MP4Handler();
-							video.playMP4(Paths.video('tooslowcutscene2'), new UnlockScreen(false, 'soundtest')); 
+							
 
 						//LoadingState.loadAndSwitchState(new UnlockScreen(false, 'soundtest'));
 
@@ -3149,7 +3146,7 @@ class PlayState extends MusicBeatState
 					
 					if (SONG.validScore)
 					{
-						NGio.unlockMedal(60961);
+						
 						Highscore.saveWeekScore(storyWeek, campaignScore, storyDifficulty);
 					}
 
