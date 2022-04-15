@@ -27,6 +27,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import lime.app.Application;
 import openfl.Assets;
+import vlc.bitmap.VlcBitmap;
 
 #if windows
 import Discord.DiscordClient;
