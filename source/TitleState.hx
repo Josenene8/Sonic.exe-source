@@ -307,7 +307,7 @@ class TitleState extends MusicBeatState
 				var returnedData:Array<String> = [];
 				
 				 var video:MP4Handler = new MP4Handler();
-                                 video.playMP4(Paths.video('bothCreditsAndIntro'), new MainMenuState())
+                                 video.playMP4(Paths.video('bothCreditsAndIntro'), new MainMenuState());
 					 
 			    }
 				video.setGraphicSize(Std.int(video.width * 2));
