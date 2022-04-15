@@ -12,7 +12,7 @@ import openfl.display3D.textures.RectangleTexture;
 import openfl.errors.Error;
 import openfl.events.Event;
 import openfl.geom.Rectangle;
-import vlc.lib.LibVLC;
+import vlc.Lib.LibVLC;
 
 /**
  * ...
